@@ -215,7 +215,7 @@ InstanceBuffer.prototype.init = function(instances, materials, textures, lights)
     let {accelerationContainer} = geometry;
     let {material, transform} = instance.data;
     let instanceEntry = {};
-    instanceEntry.flags = GPURayTracingAccelerationInstanceFlag.FORCE_OPAQUE;
+    instanceEntry.flags = GPURayTracingAccelerationInstanceUsage.FORCE_OPAQUE;
     instanceEntry.mask = 0xFF;
     instanceEntry.instanceId = ii;
     instanceEntry.instanceOffset = 0x0;
@@ -226,7 +226,7 @@ InstanceBuffer.prototype.init = function(instances, materials, textures, lights)
 
   let accelerationContainer = device.createRayTracingAccelerationContainer({
     level: "top",
-    flags: GPURayTracingAccelerationContainerFlag.ALLOW_UPDATE | GPURayTracingAccelerationContainerFlag.PREFER_FAST_TRACE,
+    flags: GPURayTracingAccelerationContainerUsage.ALLOW_UPDATE | GPURayTracingAccelerationContainerUsage.PREFER_FAST_TRACE,
     instances: geometryInstances
   });
 

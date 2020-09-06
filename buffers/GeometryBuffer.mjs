@@ -96,10 +96,10 @@ GeometryBuffer.prototype.init = function(geometries) {
     // even though their data didnt got uploaded yet
     let container = device.createRayTracingAccelerationContainer({
       level: "bottom",
-      flags: GPURayTracingAccelerationContainerFlag.PREFER_FAST_TRACE,
+      flags: GPURayTracingAccelerationContainerUsage.PREFER_FAST_TRACE,
       geometries: [
         {
-          flags: GPURayTracingAccelerationGeometryFlag.OPAQUE,
+          flags: GPURayTracingAccelerationGeometryUsage.OPAQUE,
           type: "triangles",
           index: {
             buffer: faceBuffer,

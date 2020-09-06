@@ -91,7 +91,7 @@ RayTracingPass.prototype.init = function(scene) {
   let rayShadowCHitShaderModule = device.createShaderModule({ code: loadShaderFile(`shaders/shading/shadow-ray-closest-hit.rchit`) });
   let rayShadowMissShaderModule = device.createShaderModule({ code: loadShaderFile(`shaders/shading/shadow-ray-miss.rmiss`) });
 
-  let shaderBindingTable = device.createRayTracingShaderBindingTable({
+  let  shaderBindingTable = device.createRayTracingShaderBindingTable({
     stages: [
       { module: rayGenShaderModule,        stage: GPUShaderStage.RAY_GENERATION },
       { module: rayCHitModule,             stage: GPUShaderStage.RAY_CLOSEST_HIT },
@@ -149,7 +149,8 @@ RayTracingPass.prototype.init = function(scene) {
     }),
     rayTracingState: {
       shaderBindingTable,
-      maxRecursionDepth: 2
+      maxRecursionDepth: 2,
+      maxPayloadSize: 5 * 4 * Float32Array.BYTES_PER_ELEMENT + 8, // size of glsl struct RayPayload?
     }
   });
 

@@ -33,10 +33,15 @@ Object.assign(global, glMatrix);
   });
   global["window"] = window;
 
-  let adapter = await GPU.requestAdapter({
-    window,
-    preferredBackend: "Vulkan"
-  });
+  let adapterOptions = {
+    window
+  }
+  if (process.argv.includes("--vulkan")) {
+    adapterOptions.preferredBackend = "Vulkan"
+  }
+  let adapter = await GPU.requestAdapter(adapterOptions);
+  console.log("adapter:", adapter.name);
+  console.log(" extensions:", adapter.extensions);
 
   let device = await adapter.requestDevice({
     extensions: ["ray_tracing"]

@@ -127,7 +127,8 @@ RayPickingPass.prototype.init = function(instanceContainer) {
     }),
     rayTracingState: {
       shaderBindingTable,
-      maxRecursionDepth: 1
+      maxRecursionDepth: 1,
+      maxPayloadSize: 2 * 4 * Float32Array.BYTES_PER_ELEMENT + 4, // size of glsl struct RayPayload?
     }
   });
 
